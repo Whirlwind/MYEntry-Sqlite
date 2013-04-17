@@ -13,4 +13,5 @@
     #import <Foundation/Foundation.h>
 #endif
 
+#include "../Pods-prefix.pch"
 #include "MYEntry+Sqlite-SharedPrefix.pch"
