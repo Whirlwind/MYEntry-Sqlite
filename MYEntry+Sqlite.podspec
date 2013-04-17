@@ -7,14 +7,14 @@ Pod::Spec.new do |s|
   s.author       = { "Whirlwind" => "Whirlwindjames@foxmail.com" }
   s.source       = { :git => "https://github.com/Whirlwind/MYEntry-Sqlite.git", :tag=>'v1.0'}
   s.platform     = :ios, '5.0'
-  s.source_files = 'MYEntry+Sqlite/Shared/**/*.{h,m}'
+  s.source_files = 'MYEntry+Sqlite/MYEntry+Sqlite/Shared/**/*.{h,m}'
   # s.resources = "src/*.{broadcast,route}"
   s.frameworks = 'UIKit', 'Foundation'
-  s.prefix_header_file = 'MYEntry+Sqlite/MYEntry+Sqlite-SharedPrefix.pch'
+  s.prefix_header_file = 'MYEntry+Sqlite/MYEntry+Sqlite/Shared/MYEntry+Sqlite-SharedPrefix.pch'
   s.requires_arc = true
 
   s.dependency 'MYEntry'
-  s.dependency 'FMDB', '>2.0.2'
+  s.dependency 'FMDB', '>= 2.0.2'
   # s.dependency 'ASIHTTPRequest/Basic'
   # s.dependency 'JSONAPI'
   # s.dependency 'BHAnalysis'

@@ -17,7 +17,7 @@ PODS:
   - VersionString (0.1)
 
 DEPENDENCIES:
-  - FMDB
+  - FMDB (>= 2.0.2)
   - MYEntry
   - MYEntry (from `../MYEntry`)
   - MYFramework (from `../MYFramework`)
