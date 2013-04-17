@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		163C28DC23134755A9706D8D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E44039A742C46939D9195A6 /* libPods.a */; };
+		AB0FBCCA171E4B8000F81F3D /* MYEntry+Sqlite.podspec in Resources */ = {isa = PBXBuildFile; fileRef = AB0FBCC8171E4B8000F81F3D /* MYEntry+Sqlite.podspec */; };
+		AB0FBCCB171E4B8000F81F3D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = AB0FBCC9171E4B8000F81F3D /* Podfile */; };
 		AB51403A1719C65200392662 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5140391719C65200392662 /* UIKit.framework */; };
 		AB51403C1719C65200392662 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB51403B1719C65200392662 /* Foundation.framework */; };
 		AB51403E1719C65200392662 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB51403D1719C65200392662 /* CoreGraphics.framework */; };
@@ -24,11 +26,15 @@
 		AB87F168171E34240054FC8C /* MYEntrySqlAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = AB87F15C171E34240054FC8C /* MYEntrySqlAccess.m */; };
 		AB87F173171E35320054FC8C /* FMDatabase+MYAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB87F172171E35320054FC8C /* FMDatabase+MYAdditions.m */; };
 		AB87F178171E35FE0054FC8C /* MYEntry+SqlAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = AB87F177171E35FE0054FC8C /* MYEntry+SqlAccess.m */; };
+		AB87F1BB171E47200054FC8C /* MYEntrySqliteApplicationObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = AB87F1B8171E47200054FC8C /* MYEntrySqliteApplicationObserver.m */; };
+		AB87F1EB171E4A330054FC8C /* MYEntry+Sqlite.broadcast in Resources */ = {isa = PBXBuildFile; fileRef = AB87F1EA171E4A320054FC8C /* MYEntry+Sqlite.broadcast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1097791B689640338E1ED277 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		6E44039A742C46939D9195A6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0FBCC8171E4B8000F81F3D /* MYEntry+Sqlite.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "MYEntry+Sqlite.podspec"; path = "../MYEntry+Sqlite.podspec"; sourceTree = "<group>"; };
+		AB0FBCC9171E4B8000F81F3D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; };
 		AB5140361719C65200392662 /* MYEntry+Sqlite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MYEntry+Sqlite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5140391719C65200392662 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AB51403B1719C65200392662 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,6 +69,9 @@
 		AB87F176171E35FE0054FC8C /* MYEntry+SqlAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MYEntry+SqlAccess.h"; sourceTree = "<group>"; };
 		AB87F177171E35FE0054FC8C /* MYEntry+SqlAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MYEntry+SqlAccess.m"; sourceTree = "<group>"; };
 		AB87F17A171E3C730054FC8C /* MYEntry+Sqlite-SharedPrefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MYEntry+Sqlite-SharedPrefix.pch"; sourceTree = "<group>"; };
+		AB87F1B7171E47200054FC8C /* MYEntrySqliteApplicationObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYEntrySqliteApplicationObserver.h; sourceTree = "<group>"; };
+		AB87F1B8171E47200054FC8C /* MYEntrySqliteApplicationObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYEntrySqliteApplicationObserver.m; sourceTree = "<group>"; };
+		AB87F1EA171E4A320054FC8C /* MYEntry+Sqlite.broadcast */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MYEntry+Sqlite.broadcast"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +92,8 @@
 		AB51402D1719C65200392662 = {
 			isa = PBXGroup;
 			children = (
+				AB0FBCC8171E4B8000F81F3D /* MYEntry+Sqlite.podspec */,
+				AB0FBCC9171E4B8000F81F3D /* Podfile */,
 				AB51403F1719C65200392662 /* MYEntry+Sqlite */,
 				AB51405D1719C65300392662 /* MYEntry+SqliteTests */,
 				AB5140381719C65200392662 /* Frameworks */,
@@ -158,6 +169,8 @@
 		AB87F151171E33CD0054FC8C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				AB87F1EA171E4A320054FC8C /* MYEntry+Sqlite.broadcast */,
+				AB87F1B6171E47200054FC8C /* Observer */,
 				AB87F175171E35FE0054FC8C /* MYModel */,
 				AB87F170171E35320054FC8C /* MYFoundation */,
 				AB87F152171E33E50054FC8C /* MYDataAccess */,
@@ -200,6 +213,15 @@
 				AB87F177171E35FE0054FC8C /* MYEntry+SqlAccess.m */,
 			);
 			path = MYModel;
+			sourceTree = "<group>";
+		};
+		AB87F1B6171E47200054FC8C /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				AB87F1B7171E47200054FC8C /* MYEntrySqliteApplicationObserver.h */,
+				AB87F1B8171E47200054FC8C /* MYEntrySqliteApplicationObserver.m */,
+			);
+			path = Observer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +281,9 @@
 				AB51404C1719C65200392662 /* Default.png in Resources */,
 				AB51404E1719C65200392662 /* Default@2x.png in Resources */,
 				AB5140501719C65200392662 /* Default-568h@2x.png in Resources */,
+				AB87F1EB171E4A330054FC8C /* MYEntry+Sqlite.broadcast in Resources */,
+				AB0FBCCA171E4B8000F81F3D /* MYEntry+Sqlite.podspec in Resources */,
+				AB0FBCCB171E4B8000F81F3D /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +320,7 @@
 				AB87F168171E34240054FC8C /* MYEntrySqlAccess.m in Sources */,
 				AB87F173171E35320054FC8C /* FMDatabase+MYAdditions.m in Sources */,
 				AB87F178171E35FE0054FC8C /* MYEntry+SqlAccess.m in Sources */,
+				AB87F1BB171E47200054FC8C /* MYEntrySqliteApplicationObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
