@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Whirlwind/MYEntry-Sqlite.git", :tag=>'v1.0'}
   s.platform     = :ios, '5.0'
   s.source_files = 'MYEntry+Sqlite/MYEntry+Sqlite/Shared/**/*.{h,m}'
-  # s.resources = "src/*.{broadcast,route}"
+  s.resources = "MYEntry+Sqlite/MYEntry+Sqlite/Shared/**/*.{broadcast,route}"
   s.frameworks = 'UIKit', 'Foundation'
   s.prefix_header_file = 'MYEntry+Sqlite/MYEntry+Sqlite/Shared/MYEntry+Sqlite-SharedPrefix.pch'
   s.requires_arc = true
