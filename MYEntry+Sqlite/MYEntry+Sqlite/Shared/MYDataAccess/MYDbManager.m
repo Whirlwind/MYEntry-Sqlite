@@ -182,8 +182,8 @@ static FMDatabaseQueue *_sharedDbQueue = nil;
         return;
     }
     [self setDbFileName:kMYUserDatabaseFile password:kMYUserDatabasePassword];
-    _sharedDbQueue = self.dbQueue;
     POST_BROADCAST_WITH_ARGS(@{@"sqlAccess" : self});
+    _sharedDbQueue = self.dbQueue;
     POST_BROADCAST_WITH_NAME(@"migrateUserDatabaseCompleted");
 }
 @end
