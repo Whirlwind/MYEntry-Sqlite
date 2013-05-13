@@ -236,7 +236,7 @@
                                block:block];
     }
     __block BOOL status = NO;
-    [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+    [self.dbQueue inSavePoint:^(FMDatabase *db, BOOL *rollback) {
         status = [self updateDbUsingDb:db block:block];
         *rollback = !status;
     }];
@@ -278,7 +278,7 @@
                              replace:replace];
     } else {
         __block BOOL status = NO;
-        [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [self.dbQueue inSavePoint:^(FMDatabase *db, BOOL *rollback) {
             status = [self insertDbUsingDb:db
                                    block:block
                                  replace:replace];
@@ -316,7 +316,7 @@
                                block:block];
     } else {
         __block BOOL status = NO;
-        [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [self.dbQueue inSavePoint:^(FMDatabase *db, BOOL *rollback) {
             status = [self deleteDbUsingDb:db
                                      block:block];
             *rollback = !status;
