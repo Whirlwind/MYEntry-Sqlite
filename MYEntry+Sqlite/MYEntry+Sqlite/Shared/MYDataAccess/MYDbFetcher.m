@@ -58,7 +58,7 @@
 }
 
 #pragma mark select
-- (id)select:(NSString *)aFirstParam, ... {
+- (id)selectField:(NSString *)aFirstParam, ... {
     if (_fields == nil) {
         _fields = [[NSMutableArray alloc] initWithObjects:aFirstParam, nil];
     } else {
@@ -73,7 +73,7 @@
     va_end(args);
     return self;
 }
-- (id)selectInArray:(NSArray *)fields {
+- (id)selectFieldInArray:(NSArray *)fields {
     if (_fields == nil) {
         _fields = [[NSMutableArray alloc] initWithArray:fields];
     } else {
@@ -207,7 +207,7 @@
 
 - (NSInteger)fetchCounter {
     [self.fields removeAllObjects];
-    [self select:@"count(*)", nil];
+    [self selectField:@"count(*)", nil];
     return [self fetchInteger];
 }
 #pragma mark - update

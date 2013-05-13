@@ -35,8 +35,8 @@
 - (id)orderBy:(NSString *)aField
                               ascending:(BOOL)isAscending;
 - (id)orderBy:(NSString *)aField;
-- (id)select:(NSString *)aFirstParam, ... NS_REQUIRES_NIL_TERMINATION;
-- (id)selectInArray:(NSArray *)fields;
+- (id)selectField:(NSString *)aFirstParam, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)selectFieldInArray:(NSArray *)fields;
 - (id)where:(NSString *)aCondition, ... NS_REQUIRES_NIL_TERMINATION;
 - (id)where:(NSString *)aCondition argsInArray:(NSArray *)args;
 - (id)update:(NSDictionary *)updateDic;
