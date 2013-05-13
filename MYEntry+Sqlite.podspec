@@ -14,9 +14,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency 'MYEntry'
-  s.dependency 'FMDB', '>= 2.0.2'
-  # s.dependency 'ASIHTTPRequest/Basic'
-  # s.dependency 'JSONAPI'
-  # s.dependency 'BHAnalysis'
-  # s.dependency 'MTStatusBarOverlay'
+  s.dependency 'FMDB', '2.0.3'
 end
