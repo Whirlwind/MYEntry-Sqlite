@@ -18,7 +18,6 @@
 @property (strong, nonatomic) FMDatabaseQueue *dbQueue;
 
 
-
 + (FMDatabaseQueue *)openDB:(NSString *)_dbPath
                    password:(NSString *)password;
 - (id)initWithUserDatabaseFile:(NSString *)dbFileName password:(NSString *)password;
@@ -31,7 +30,7 @@
 
 - (void)migratePlugin:(NSString *)plugin
             toVersion:(NSInteger)newVersion
-               update:(void(^)(NSInteger oldVersion, MYDbManager *accessor))block;
+               update:(BOOL(^)(NSInteger oldVersion, MYDbManager *accessor))block;
 
 + (void)restore:(NSArray *)datas
            toDb:(FMDatabaseQueue *)newDbQueue

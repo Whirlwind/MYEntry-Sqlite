@@ -67,7 +67,7 @@ static FMDatabaseQueue *_sharedDbQueue = nil;
 }
 
 #pragma mark - migration
-- (void)migratePlugin:(NSString *)plugin toVersion:(NSInteger)newVersion update:(void(^)(NSInteger oldVersion, MYDbManager *accessor))block {
+- (void)migratePlugin:(NSString *)plugin toVersion:(NSInteger)newVersion update:(BOOL(^)(NSInteger oldVersion, MYDbManager *accessor))block {
     NSInteger currentVersion = [self currentVersionForPlugin:plugin];
     if (currentVersion < newVersion) {
         // 回调update方法，如果版本不是最新的
@@ -75,7 +75,10 @@ static FMDatabaseQueue *_sharedDbQueue = nil;
 #ifndef __OPTIMIZE__
         NSDate *beginDate = [NSDate date];
 #endif
-        block(currentVersion, self);
+        if (!block(currentVersion, self)) {
+            NSLog(@"ERROR! migrate failed!");
+            return;
+        }
 #ifndef __OPTIMIZE__
         NSLog(@"use time: %.2f", [[NSDate date] timeIntervalSinceDate:beginDate]);
 #endif
