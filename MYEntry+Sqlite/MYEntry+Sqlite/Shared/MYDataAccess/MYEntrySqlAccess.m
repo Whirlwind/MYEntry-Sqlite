@@ -151,9 +151,7 @@
             NSString *property = [self.entryClass convertDbFieldNameToPropertyName:key];
             SEL setProperty = [[self entryClass] setterFromPropertyString:property];
             if ([entry respondsToSelector:setProperty]) {
-                MYPerformSelectorWithoutLeakWarningBegin
-                [entry performSelector:setProperty withObject:[obj isEqual:[NSNull null]] ? nil : obj];
-                MYPerformSelectorWithoutLeakWarningEnd
+                [entry setValue:[obj isEqual:[NSNull null]] ? nil : obj forKey:property];
             }
         }];
     }];
