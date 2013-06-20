@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSNumber *offset;
 @property (strong, nonatomic) NSNumber *limit;
 @property (strong, nonatomic) NSMutableArray *orderBy;
+@property (strong, nonatomic) NSString *executeSql;
 
 + (id)fetcherForTableName:(NSString *)tableName;
 
@@ -41,6 +42,8 @@
 - (id)where:(NSString *)aCondition argsInArray:(NSArray *)args;
 - (id)update:(NSDictionary *)updateDic;
 - (id)insert:(NSDictionary *)insertDic;
+
+- (id)executeSql:(NSString *)sql;
 
 - (id)usingDb:(FMDatabase *)db;
 - (id)usingDbQueue:(FMDatabaseQueue *)dbQueue;

@@ -119,6 +119,12 @@
     return [self update:insertDic];
 }
 
+#pragma mark raw sql
+- (id)executeSql:(NSString *)sql {
+    self.executeSql = sql;
+    return self;
+}
+
 #pragma mark - using
 - (id)usingDb:(FMDatabase *)db {
     self.db = db;
@@ -132,7 +138,7 @@
 #pragma mark - fetch
 - (void)fetchDbInDb:(FMDatabase *)db withBlock:(void (^)(FMResultSet *rs))block {
     NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:0];
-    NSString *sql = [self buildSelectSqlWithArgs:&args];
+    NSString *sql = self.executeSql ? self.executeSql : [self buildSelectSqlWithArgs:&args];
     __block FMResultSet *rs = nil;
     rs = [db executeQuery:sql withArgumentsInArray:args];
     if ([db hadError]) {
