@@ -220,7 +220,13 @@
     return [self fetchCounter];
 }
 - (MYEntry *)entryAt:(NSNumber *)index {
-    return [(MYEntrySqlAccess *)[self where:@"id = ?", index, nil] fetchRecord];
+    if ([[MYDbSchema sharedInstance] hasColumn:@"id" forTable:self.tableName]) {
+        return [(MYEntrySqlAccess *)[self where:@"id = ?", index, nil] fetchRecord];
+    }
+    if ([[MYDbSchema sharedInstance] hasColumn:@"remote_id" forTable:self.tableName]) {
+        return [(MYEntrySqlAccess *)[self where:@"remote_id = ?", index, nil] fetchRecord];
+    }
+    return nil;
 }
 - (BOOL)existEntry {
     return [self fetchCounter] > 0;
