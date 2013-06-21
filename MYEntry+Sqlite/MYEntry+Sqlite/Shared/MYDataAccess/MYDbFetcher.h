@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSNumber *limit;
 @property (strong, nonatomic) NSMutableArray *orderBy;
 @property (strong, nonatomic) NSString *executeSql;
+@property (strong, nonatomic) NSMutableDictionary *parameterDictionary;
 
 + (id)fetcherForTableName:(NSString *)tableName;
 
@@ -43,7 +44,7 @@
 - (id)update:(NSDictionary *)updateDic;
 - (id)insert:(NSDictionary *)insertDic;
 
-- (id)executeSql:(NSString *)sql;
+- (id)executeSql:(NSString *)sql withParameterDictionary:(NSDictionary *)parameter;
 
 - (id)usingDb:(FMDatabase *)db;
 - (id)usingDbQueue:(FMDatabaseQueue *)dbQueue;

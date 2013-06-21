@@ -120,8 +120,9 @@
 }
 
 #pragma mark raw sql
-- (id)executeSql:(NSString *)sql {
+- (id)executeSql:(NSString *)sql withParameterDictionary:(NSDictionary *)parameters {
     self.executeSql = sql;
+    self.parameterDictionary = [NSMutableDictionary dictionaryWithDictionary:parameters];
     return self;
 }
 
@@ -140,7 +141,11 @@
     NSMutableArray *args = [[NSMutableArray alloc] initWithCapacity:0];
     NSString *sql = self.executeSql ? self.executeSql : [self buildSelectSqlWithArgs:&args];
     __block FMResultSet *rs = nil;
-    rs = [db executeQuery:sql withArgumentsInArray:args];
+    if (self.parameterDictionary == nil) {
+        rs = [db executeQuery:sql withArgumentsInArray:args];
+    } else {
+        rs = [db executeQuery:sql withParameterDictionary:self.parameterDictionary];
+    }
     if ([db hadError]) {
         LogError(@"ERROR! %@ : %@", sql, [db lastError]);
     }
