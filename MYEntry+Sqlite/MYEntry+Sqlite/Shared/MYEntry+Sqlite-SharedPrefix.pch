@@ -1,3 +1,5 @@
 // =========== MYEntry+Sqlite ==========
-#import "MYFramework.h"
-#import "FMDatabase+MYAdditions.h"
+#ifdef __OBJC__
+#   import "MYFramework.h"
+#   import "FMDatabase+MYAdditions.h"
+#endif
