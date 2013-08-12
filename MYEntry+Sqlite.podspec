@@ -10,7 +10,13 @@ Pod::Spec.new do |s|
   s.source_files = 'MYEntry+Sqlite/MYEntry+Sqlite/Shared/**/*.{h,m}'
   s.resources = "MYEntry+Sqlite/MYEntry+Sqlite/Shared/**/*.{broadcast,route}"
   s.frameworks = 'UIKit', 'Foundation'
-  s.prefix_header_file = 'MYEntry+Sqlite/MYEntry+Sqlite/Shared/MYEntry+Sqlite-SharedPrefix.pch'
+  s.prefix_header_contents = %(
+// =========== MYEntry+Sqlite ==========
+#ifdef __OBJC__
+#   import "MYFramework.h"
+#   import "MYEntry.h"
+#   import "FMDatabase+MYAdditions.h"
+#endif)
   s.requires_arc = true
 
   s.dependency 'MYEntry'
