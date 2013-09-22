@@ -195,6 +195,11 @@
     return status;
 }
 
++ (BOOL)clearEntries {
+    BOOL status = [[[self alloc] init] deleteDb];
+    return status;
+}
+
 #pragma mark - private
 - (NSDictionary *)changesDictionary {
     NSMutableDictionary *changeDic = [[NSMutableDictionary alloc] initWithCapacity:[self.entry.changes count]];
