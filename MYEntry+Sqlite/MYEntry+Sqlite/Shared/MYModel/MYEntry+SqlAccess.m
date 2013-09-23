@@ -11,18 +11,60 @@
 
 @implementation MYEntry (SqlAccess)
 
-+ (NSString *)convertPropertyNameToDbFieldName:(NSString *)name {
-    if ([name isEqualToString:@"index"]) {
-        return @"id";
++ (NSMutableDictionary *)sharedDbFieldNameToPropertyNameTable
+{
+    static dispatch_once_t once;
+    static NSMutableDictionary * __sharedDbFieldNameToPropertyNameTable__;
+    dispatch_once( &once, ^{ __sharedDbFieldNameToPropertyNameTable__ = [[NSMutableDictionary alloc] init]; } );
+    NSString *table = [self tableName];
+    NSMutableDictionary *value = [__sharedDbFieldNameToPropertyNameTable__ valueForKey:table];
+    if (!value) {
+        value = [[NSMutableDictionary alloc] init];
+        [__sharedDbFieldNameToPropertyNameTable__ setValue:value forKey:table];
     }
-    return [self convertAppleStylePropertyToRailsStyleProperty:name];
+    return value;
+}
+
++ (NSMutableDictionary *)sharedPropertyNameToDbFieldNameTable
+{
+    static dispatch_once_t once;
+    static NSMutableDictionary * __sharedPropertyNameToDbFieldNameTable__;
+    dispatch_once( &once, ^{ __sharedPropertyNameToDbFieldNameTable__ = [[NSMutableDictionary alloc] init]; } );
+    NSString *table = [self tableName];
+    NSMutableDictionary *value = [__sharedPropertyNameToDbFieldNameTable__ valueForKey:table];
+    if (!value) {
+        value = [[NSMutableDictionary alloc] init];
+        [__sharedPropertyNameToDbFieldNameTable__ setValue:value forKey:table];
+    }
+    return value;
+}
+
++ (NSString *)convertPropertyNameToDbFieldName:(NSString *)name {
+    NSMutableDictionary *dic = [self sharedPropertyNameToDbFieldNameTable];
+    NSString *value = [dic valueForKey:name];
+    if (value) {
+        return value;
+    }
+    if ([name isEqualToString:@"index"]) {
+        value = @"id";
+    }
+    value = [self convertAppleStylePropertyToRailsStyleProperty:name];
+    [dic setValue:value forKey:name];
+    return value;
 }
 
 + (NSString *)convertDbFieldNameToPropertyName:(NSString *)name {
-    if ([name isEqualToString:@"id"]) {
-        return @"index";
+    NSMutableDictionary *dic = [self sharedDbFieldNameToPropertyNameTable];
+    NSString *value = [dic valueForKey:name];
+    if (value) {
+        return value;
     }
-    return [self convertRailsStylePropertyToAppleStyleProperty:name];
+    if ([name isEqualToString:@"id"]) {
+        value = @"index";
+    }
+    value = [self convertRailsStylePropertyToAppleStyleProperty:name];
+    [dic setValue:value forKey:name];
+    return value;
 }
 
 + (NSString *)tableName {
