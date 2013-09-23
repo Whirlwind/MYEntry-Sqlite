@@ -149,10 +149,7 @@
     [entry disableListenProperty:^{
         [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             NSString *property = [self.entryClass convertDbFieldNameToPropertyName:key];
-            SEL setProperty = [[self entryClass] setterFromPropertyString:property];
-            if ([entry respondsToSelector:setProperty]) {
-                [entry setValue:[obj isEqual:[NSNull null]] ? nil : obj forKey:property];
-            }
+            [entry setValue:[obj isEqual:[NSNull null]] ? nil : obj forKey:property];
         }];
     }];
     return entry;
