@@ -123,16 +123,16 @@
         return YES;
     } replace:self.insertModeUsingReplace];
     return status;
-    
+
 }
 
 #pragma mark U
 - (BOOL)updateEntry {
     NSDictionary *changeDic = [self changesDictionary];
     BOOL status = [[[self where:@"id = ?", self.entry.index, nil] update:changeDic] updateDb:^BOOL(FMDatabase *db) {
-//        if (self.needLog && ![self logChanges:changeDic usingDb:db]) {
-//            return NO;
-//        }
+        //        if (self.needLog && ![self logChanges:changeDic usingDb:db]) {
+        //            return NO;
+        //        }
         return YES;
     }];
     return status;
@@ -141,39 +141,45 @@
 #pragma mark R
 
 - (MYEntry *)fetchRecordFromResultSet:(FMResultSet *)rs {
-    if ([self.entryClass respondsToSelector:@selector(fetchRecordFromResultSet:)]) {
-        return [self.entryClass performSelector:@selector(fetchRecordFromResultSet:) withObject:rs];
-    }
-    NSDictionary *dic = [rs resultDictionary];
-    MYEntry *entry = [[self.entryClass alloc] init];
-    [entry disableListenProperty:^{
-        [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            NSString *property = [self.entryClass convertDbFieldNameToPropertyName:key];
-            [entry setValue:[obj isEqual:[NSNull null]] ? nil : obj forKey:property];
+    @autoreleasepool {
+        if ([self.entryClass respondsToSelector:@selector(fetchRecordFromResultSet:)]) {
+            return [self.entryClass performSelector:@selector(fetchRecordFromResultSet:) withObject:rs];
+        }
+        NSDictionary *dic = [rs resultDictionary];
+        MYEntry *entry = [[self.entryClass alloc] init];
+        [entry disableListenProperty:^{
+            [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                NSString *property = [self.entryClass convertDbFieldNameToPropertyName:key];
+                [entry setValue:[obj isEqual:[NSNull null]] ? nil : obj forKey:property];
+            }];
         }];
-    }];
-    return entry;
+        return entry;
+    }
 }
 
 - (NSArray *)fetchRecords {
-    __strong NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:0];
-    [self fetchDbWithBlock:^(FMResultSet *rs) {
-        while ([rs next]) {
-            [result addObject:[self fetchRecordFromResultSet:rs]];
-        }
-    }];
-    return result;
+    @autoreleasepool {
+        __strong NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:0];
+        [self fetchDbWithBlock:^(FMResultSet *rs) {
+            while ([rs next]) {
+                [result addObject:[self fetchRecordFromResultSet:rs]];
+            }
+        }];
+        return result;
+    }
 }
 
 - (MYEntry *)fetchRecord {
-    [self limit:1];
-    __block MYEntry *result = nil;
-    [self fetchDbWithBlock:^(FMResultSet *rs) {
-        if ([rs next]) {
-            result = [self fetchRecordFromResultSet:rs];
-        }
-    }];
-    return result;
+    @autoreleasepool {
+        [self limit:1];
+        __block MYEntry *result = nil;
+        [self fetchDbWithBlock:^(FMResultSet *rs) {
+            if ([rs next]) {
+                result = [self fetchRecordFromResultSet:rs];
+            }
+        }];
+        return result;
+    }
 }
 
 #pragma mark D
